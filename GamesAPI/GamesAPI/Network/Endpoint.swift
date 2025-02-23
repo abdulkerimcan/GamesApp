@@ -10,6 +10,7 @@ import Foundation
 enum Endpoint {
     case games
     case gameDetail(id: Int)
+    case genres
     
     private static let baseURL = URL(string: "https://api.igdb.com/v4")!
     
@@ -19,6 +20,8 @@ enum Endpoint {
             Endpoint.baseURL.appendingPathComponent("games")
         case .gameDetail:
             Endpoint.baseURL.appendingPathComponent("games")
+        case .genres:
+            Endpoint.baseURL.appendingPathComponent("genres")
         }
     }
     
@@ -27,31 +30,37 @@ enum Endpoint {
         case .games:
             """
             fields 
-                artworks,
-                cover,
-                created_at,
-                genres,
-                name,
-                platforms,
-                rating,
-                screenshots,
-                summary,
-                videos;
+            artworks.*,
+            cover.*,
+            created_at,
+            genres.*,
+            name,
+            platforms.*,
+            rating,
+            screenshots.*,
+            summary,
+            videos.*;
+            limit 30;
             """.data(using: .utf8)
-            
-        case .gameDetail(let id):
+        case .genres:
             """
             fields 
-                artworks,
-                cover,
-                created_at,
-                genres,
-                name,
-                platforms,
-                rating,
-                screenshots,
-                summary,
-                videos;
+            name,
+            url;
+            """.data(using: .utf8)
+        case .gameDetail(let id):
+            """
+            fields  
+            artworks.*,
+            cover.*,
+            created_at,
+            genres.*,
+            name,
+            platforms.*,
+            rating,
+            screenshots.*,
+            summary,
+            videos.*;
             where id = \(id);
             """.data(using: .utf8)
         }
