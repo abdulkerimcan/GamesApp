@@ -6,12 +6,14 @@
 //
 
 import UIKit
+import GamesAPI
 
 final class HomeBuilder {
     static func build() -> UIViewController {
         let view = HomeViewController()
         let router = HomeRouter(view: view)
-        let interactor = HomeInteractor()
+        let gameService = GameService()
+        let interactor = HomeInteractor(service: gameService)
         let presenter = HomePresenter(view: view, interactor: interactor, router: router)
         view.presenter = presenter
         return view

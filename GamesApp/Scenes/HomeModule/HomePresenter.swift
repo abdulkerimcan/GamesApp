@@ -9,7 +9,7 @@ import Foundation
 
 final class HomePresenter: HomePresenterProtocol {
     func load() {
-        view.handleOutput(.updateTitle("Kerim's Games"))
+        view.handleOutput(.updateTitle("Games"))
         interactor.downloadGames()
     }
     
@@ -34,8 +34,8 @@ extension HomePresenter: HomeInteractorDelegate {
         switch output {
         case .setLoading(let isLoading):
             view.handleOutput(.setLoading(isLoading))
-        case .showGames:
-            view.handleOutput(.showGames)
+        case .showGams(let games):
+            view.handleOutput(.showGames(games))
         }
     }
 }

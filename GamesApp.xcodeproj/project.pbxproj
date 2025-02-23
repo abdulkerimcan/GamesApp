@@ -6,7 +6,27 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		0A006D862D6A54F9004515DF /* GamesAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A006D852D6A54F9004515DF /* GamesAPI.framework */; };
+		0A006D872D6A54F9004515DF /* GamesAPI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A006D852D6A54F9004515DF /* GamesAPI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		0A006D882D6A54F9004515DF /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				0A006D872D6A54F9004515DF /* GamesAPI.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		0A006D852D6A54F9004515DF /* GamesAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GamesAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A4543112D6A05B300E5AACA /* GamesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GamesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -36,16 +56,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A006D862D6A54F9004515DF /* GamesAPI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A006D842D6A54F9004515DF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0A006D852D6A54F9004515DF /* GamesAPI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		0A4543082D6A05B300E5AACA = {
 			isa = PBXGroup;
 			children = (
 				0A4543132D6A05B300E5AACA /* GamesApp */,
+				0A006D842D6A54F9004515DF /* Frameworks */,
 				0A4543122D6A05B300E5AACA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -68,6 +98,7 @@
 				0A45430D2D6A05B300E5AACA /* Sources */,
 				0A45430E2D6A05B300E5AACA /* Frameworks */,
 				0A45430F2D6A05B300E5AACA /* Resources */,
+				0A006D882D6A54F9004515DF /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
