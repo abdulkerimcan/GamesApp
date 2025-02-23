@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0A8D7FEC2D6B1DCC002F9993 /* GamesAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A8D7FEB2D6B1DCC002F9993 /* GamesAPI.framework */; };
-		0A8D7FED2D6B1DCC002F9993 /* GamesAPI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A8D7FEB2D6B1DCC002F9993 /* GamesAPI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0A8D801E2D6B4F0A002F9993 /* GamesAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A8D801D2D6B4F0A002F9993 /* GamesAPI.framework */; };
+		0A8D801F2D6B4F0A002F9993 /* GamesAPI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0A8D801D2D6B4F0A002F9993 /* GamesAPI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -18,7 +18,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				0A8D7FED2D6B1DCC002F9993 /* GamesAPI.framework in Embed Frameworks */,
+				0A8D801F2D6B4F0A002F9993 /* GamesAPI.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -26,9 +26,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0A006D852D6A54F9004515DF /* GamesAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GamesAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A4543112D6A05B300E5AACA /* GamesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GamesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		0A8D7FEB2D6B1DCC002F9993 /* GamesAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GamesAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0A8D801D2D6B4F0A002F9993 /* GamesAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = GamesAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -57,27 +56,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0A8D7FEC2D6B1DCC002F9993 /* GamesAPI.framework in Frameworks */,
+				0A8D801E2D6B4F0A002F9993 /* GamesAPI.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0A006D842D6A54F9004515DF /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				0A8D7FEB2D6B1DCC002F9993 /* GamesAPI.framework */,
-				0A006D852D6A54F9004515DF /* GamesAPI.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		0A4543082D6A05B300E5AACA = {
 			isa = PBXGroup;
 			children = (
 				0A4543132D6A05B300E5AACA /* GamesApp */,
-				0A006D842D6A54F9004515DF /* Frameworks */,
+				0A8D801C2D6B4F0A002F9993 /* Frameworks */,
 				0A4543122D6A05B300E5AACA /* Products */,
 			);
 			sourceTree = "<group>";
@@ -88,6 +78,14 @@
 				0A4543112D6A05B300E5AACA /* GamesApp.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		0A8D801C2D6B4F0A002F9993 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0A8D801D2D6B4F0A002F9993 /* GamesAPI.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
