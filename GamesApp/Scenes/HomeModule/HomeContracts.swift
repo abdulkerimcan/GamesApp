@@ -27,7 +27,7 @@ protocol HomeInteractorDelegate: AnyObject {
 
 enum HomeInteractorDelegateOutput {
     case setLoading(Bool)
-    case showGames // -> Add games array
+    case showGams([Game])
 }
 
 //Presenter
@@ -40,13 +40,13 @@ protocol HomePresenterProtocol: AnyObject {
 enum HomePresenterProtocolOutput {
     case updateTitle(String)
     case setLoading(Bool)
-    case showGames // -> Add games array
+    case showGames([Game])
 }
 
 //Router
 
 enum HomeRoute {
-    case detail // (Game)
+    case detail(Game) // (Game)
 }
 
 protocol HomeRouterProtocol: AnyObject {
