@@ -6,10 +6,11 @@
 //
 
 import UIKit
+import GamesAPI
 
-class HomeViewController: UIViewController, HomeViewProtocol {
+final class HomeViewController: UIViewController, HomeViewProtocol {
     var presenter: HomePresenterProtocol!
-    var games: [Game] = []
+    private var games: [Game] = []
     
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
@@ -30,7 +31,25 @@ class HomeViewController: UIViewController, HomeViewProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter?.load()
-        
+        configureVC()
+    }
+    
+    func handleOutput(_ MovieOutput: HomePresenterProtocolOutput) {
+        switch MovieOutput {
+        case .updateTitle(let newTitle):
+            title = newTitle
+        case .setLoading(let isLoading):
+            isLoading ? startAnimating() : stopAnimating()
+        case .showGames(let array):
+            DispatchQueue.main.async { [weak self] in
+                guard let self else { return }
+                self.games = array
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
+    private func configureVC() {
         view.addSubview(tableView)
         view.addSubview(spinner)
         NSLayoutConstraint.activate([
@@ -42,20 +61,6 @@ class HomeViewController: UIViewController, HomeViewProtocol {
             spinner.centerXAnchor.constraint(equalTo: tableView.centerXAnchor),
             spinner.centerYAnchor.constraint(equalTo: tableView.centerYAnchor),
         ])
-    }
-    
-    func handleOutput(_ MovieOutput: HomePresenterProtocolOutput) {
-        switch MovieOutput {
-        case .updateTitle(let newTitle):
-            title = newTitle
-        case .setLoading(let isLoading):
-            isLoading ? startAnimating() : stopAnimating()
-        case .showGames(let array):
-            DispatchQueue.main.async {
-                self.games = array
-                self.tableView.reloadData()
-            }
-        }
     }
     
     private func startAnimating() {

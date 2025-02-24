@@ -21,10 +21,10 @@ final class NetworkManager {
     static let shared = NetworkManager()
     
     private let headers: [String: String] = [
-            "Content-Type": "application/json",
-            "Authorization": "bearer access_token",
-            "Client-ID": "client_id"
-        ]
+        "Content-Type": "application/json",
+        "Authorization": "bearer d83sf9j3lmrm53vas7z5d5av56b108",
+        "Client-ID": "6dnm26u74o0s2ae0fwuhp7iq4nfngg"
+    ]
     
     private init() {}
     
