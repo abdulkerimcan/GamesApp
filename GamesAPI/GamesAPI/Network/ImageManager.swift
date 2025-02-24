@@ -12,14 +12,16 @@ public final class ImageManager {
     private var imageCache = NSCache<NSString, UIImage>()
     private let headers: [String: String] = [
         "Content-Type": "application/json",
-        "Authorization": "bearer d83sf9j3lmrm53vas7z5d5av56b108",
-        "Client-ID": "6dnm26u74o0s2ae0fwuhp7iq4nfngg"
+        "Authorization": "bearer access_token",
+        "Client-ID": "Client-ID"
     ]
     private var downloadTasks = [URL: URLSessionDataTask]()
     
     private init() {
-        
+        imageCache.countLimit = 100
+        imageCache.totalCostLimit = 50 * 1024 * 1024
     }
+    
     private func fixProtocolRelativeURL(_ urlString: String) -> String {
         if urlString.hasPrefix("//") {
             return "https:" + urlString
@@ -47,6 +49,7 @@ public final class ImageManager {
                 DispatchQueue.main.async {
                     completion(.failure(error))
                 }
+                return
             }
             
             guard let data, let image = UIImage(data: data) else {
@@ -58,6 +61,9 @@ public final class ImageManager {
             
             let key = url.absoluteString as NSString
             self.imageCache.setObject(image, forKey: key)
+            DispatchQueue.main.async {
+                completion(.success(image))
+            }
         }
         
         downloadTasks[url] = task
