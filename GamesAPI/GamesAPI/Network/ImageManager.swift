@@ -10,12 +10,6 @@ import UIKit
 public final class ImageManager {
     public static let shared = ImageManager()
     private var imageCache = NSCache<NSString, UIImage>()
-    private let headers: [String: String] = [
-        "Content-Type": "application/json",
-        "Authorization": "bearer access_token",
-        "Client-ID": "client_id"
-    ]
-    private var downloadTasks = [URL: URLSessionDataTask]()
     
     private init() {
         imageCache.countLimit = 100
@@ -34,17 +28,8 @@ public final class ImageManager {
             completion(.success(cachedImage))
         }
         
-        if let existingTask = downloadTasks[url] {
-            existingTask.cancel()
-            downloadTasks.removeValue(forKey: url)
-        }
-        
-        var request = URLRequest(url: url)
-        request.allHTTPHeaderFields = headers
-        
         let task = URLSession.shared.dataTask(with: url) { [weak self] data, response, error in
             guard let self = self else { return }
-            defer { self.downloadTasks.removeValue(forKey: url) }
             if let error = error {
                 DispatchQueue.main.async {
                     completion(.failure(error))
@@ -66,7 +51,6 @@ public final class ImageManager {
             }
         }
         
-        downloadTasks[url] = task
         task.resume()
     }
     
