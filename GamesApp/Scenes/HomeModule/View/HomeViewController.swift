@@ -23,7 +23,8 @@ final class HomeViewController: UIViewController, HomeViewProtocol {
     // MARK: - Properties
     var presenter: HomePresenterProtocol!
     
-    private var dataSource: UICollectionViewDiffableDataSource<SectionType, ItemType>!
+    private typealias DataSource = UICollectionViewDiffableDataSource<SectionType, ItemType>
+    private var dataSource: DataSource!
     private var isLoadingMoreData: Bool = false
     private var games: [Game] = []
     private var genres: [Genre] = []
@@ -76,7 +77,7 @@ final class HomeViewController: UIViewController, HomeViewProtocol {
     }
     
     private func configureDataSource() {
-        dataSource = UICollectionViewDiffableDataSource<SectionType, ItemType>(collectionView: collectionView) { [weak self] collectionView, indexPath, itemType in
+        dataSource = DataSource(collectionView: collectionView) { [weak self] collectionView, indexPath, itemType in
             switch itemType {
             case .genre(let genre):
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GenreCollectionViewCell.identifier, for: indexPath) as? GenreCollectionViewCell else {
@@ -185,7 +186,7 @@ extension HomeViewController: UICollectionViewDelegate {
             presenter?.didSelectGenre(at: indexPath.item)
             dataSource.apply(snapshot, animatingDifferences: true)
         case .game:
-            break
+            presenter?.didSelectGame(at: indexPath.item)
         }
     }
 }

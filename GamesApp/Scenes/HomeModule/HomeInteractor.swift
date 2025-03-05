@@ -79,7 +79,7 @@ final class HomeInteractor: HomeInteractorProtocol  {
     }
     
     func loadImage(urlString: String, indexPath: IndexPath) {
-        ImageManager.shared.loadImage(from: urlString) { [weak self] result in
+        service.loadImage(urlString: urlString) { [weak self] result in
             guard let self else { return }
             switch result {
             case .success(let image):

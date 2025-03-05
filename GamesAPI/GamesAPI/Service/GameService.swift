@@ -5,14 +5,20 @@
 //  Created by Abdulkerim Can on 23.02.2025.
 //
 
-import Foundation
+import UIKit
 
 public protocol GameServiceProtocol {
     func fetchGames(endPoint: Endpoint, completion: @escaping (Result<[GameDTO], Error>) -> Void)
     func fetchGenres(completion: @escaping (Result<[GenreDTO], Error>) -> Void)
+    func loadImage(urlString: String, completion:  @escaping (Result<UIImage, Error>) -> Void)
 }
 
 public class GameService: GameServiceProtocol {
+    public func loadImage(urlString: String, completion:  @escaping (Result<UIImage, Error>) -> Void) {
+        ImageManager.shared.loadImage(from: urlString) { result in
+            completion(result)
+        }
+    }
     
     public init() { }
     

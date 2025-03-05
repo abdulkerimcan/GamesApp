@@ -16,8 +16,9 @@ final class HomeRouter: HomeRouterProtocol {
     
     func navigate(to route: HomeRoute) {
         switch route {
-        case .detail:
-            print("Navigate")
+        case .detail(let game):
+            let gameDetailViewController = GameDetailBuilder.build(with: game)
+            view.navigationController?.pushViewController(gameDetailViewController, animated: true)
         }
     }
 }

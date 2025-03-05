@@ -30,7 +30,8 @@ final class HomePresenter: HomePresenterProtocol {
     }
     
     func didSelectGame(at index: Int) {
-        
+        let game = games[index]
+        router.navigate(to: .detail(game))
     }
     
     func didSelectGenre(at index: Int) {
