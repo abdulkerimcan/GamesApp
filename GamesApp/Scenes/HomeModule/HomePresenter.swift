@@ -35,6 +35,7 @@ final class HomePresenter: HomePresenterProtocol {
     }
     
     func didSelectGenre(at index: Int) {
+        games.removeAll()
         selectedGenreId = genres[index].id
         let genre = genres[index]
         interactor.downloadGames(in: genre)
@@ -58,7 +59,7 @@ extension HomePresenter: HomeInteractorDelegate {
         case .setLoading(let isLoading):
             view.handleOutput(.setLoading(isLoading))
         case .showGames(let games):
-            self.games = games
+            self.games.append(contentsOf: games)
             view.handleOutput(.showGames(games))
         case .setImage(image: let image, indexPath: let indexPath):
             view.handleOutput(.setImage(image: image, indexPath: indexPath))

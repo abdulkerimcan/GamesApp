@@ -32,7 +32,7 @@ final class HomeViewController: UIViewController, HomeViewProtocol {
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createCompositionalLayout())
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.allowsSelection = true
+        collectionView.allowsMultipleSelection = true
         return collectionView
     }()
     
@@ -180,12 +180,20 @@ extension HomeViewController: UICollectionViewDelegate {
         
         switch item {
         case .genre:
+            if let selectedIndexPaths = collectionView.indexPathsForSelectedItems {
+                for selectedIndexPath in selectedIndexPaths where selectedIndexPath.section == indexPath.section && selectedIndexPath != indexPath {
+                    collectionView.deselectItem(at: selectedIndexPath, animated: true)
+                }
+            }
+            
             var snapshot = dataSource.snapshot()
             snapshot.deleteSections([.games])
             games.removeAll()
             presenter?.didSelectGenre(at: indexPath.item)
             dataSource.apply(snapshot, animatingDifferences: true)
+            
         case .game:
+            collectionView.deselectItem(at: indexPath, animated: true)
             presenter?.didSelectGame(at: indexPath.item)
         }
     }
