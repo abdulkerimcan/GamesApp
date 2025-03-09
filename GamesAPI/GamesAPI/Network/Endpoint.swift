@@ -9,16 +9,14 @@ import Foundation
 
 public enum Endpoint {
     case games(offset: Int, genreId: Int? = nil)
-    case gameDetail(id: Int)
+    case search(searchQuery: String)
     case genres
     
     private static let baseURL = URL(string: "https://api.igdb.com/v4")!
     
     var url: URL {
         switch self {
-        case .games:
-            Endpoint.baseURL.appendingPathComponent("games")
-        case .gameDetail:
+        case .games, .search:
             Endpoint.baseURL.appendingPathComponent("games")
         case .genres:
             Endpoint.baseURL.appendingPathComponent("genres")
@@ -56,9 +54,9 @@ public enum Endpoint {
             url;
             limit 5;
             """
-        case .gameDetail(let id):
-            query = """
-            fields  
+        case .search(let searchQuery):
+            query =  """
+            fields 
             artworks.*,
             cover.*,
             created_at,
@@ -69,7 +67,8 @@ public enum Endpoint {
             screenshots.*,
             summary,
             videos.*;
-            where id = \(id);
+            limit 30;
+            search \"\(searchQuery)\";
             """
         }
         return query.data(using: .utf8)

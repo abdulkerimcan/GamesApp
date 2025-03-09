@@ -18,3 +18,4 @@ struct Game: Hashable {
     let platforms: [Platform]?
     let screenshots: [ArtWork]?
 }
+

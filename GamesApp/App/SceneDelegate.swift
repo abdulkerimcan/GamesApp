@@ -15,10 +15,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
-        let view = HomeBuilder.build()
-        let nav = UINavigationController(rootViewController: view)
+        let view = GameTabbarController()
         window?.windowScene = windowScene
-        window?.rootViewController = nav
+        window?.rootViewController = view
         window?.makeKeyAndVisible()
     }
 }
